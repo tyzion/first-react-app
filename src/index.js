@@ -1,17 +1,41 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from 'react'
+import ReactDom from 'react-dom'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+// CSS
+import './index.css'
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// import {greeting} from './testing/testing'
+
+import {bookArray} from './books'
+import SpecificBook from './Book' // if it's default, i don't need the {}
+
+function BookList() {
+  return (
+    <section className="booklist">
+      {bookArray.map((book)=> {
+        return (
+          <SpecificBook 
+          // img={img}
+          // title={title}
+          // author={author}
+          
+          // book={book} //we can also use the spread operator
+
+          {...book}
+          // key={index} // as key we should use smth that does not change
+          key={book.id}
+          >
+          </SpecificBook>
+        )
+      })}
+      
+    </section>
+  );
+}
+
+
+// const Image = () => <img src="https://upload.wikimedia.org/wikipedia/en/0/05/Littleprince.JPG" alt=""/>
+// const Title = () => <h1>The little Prince</h1>
+// const Author = () => <h4 style={{color: 'blue',fontSize: '0.75rem'}}>Saint-Exupery</h4>
+
+ReactDom.render(<BookList />, document.getElementById('root'))
